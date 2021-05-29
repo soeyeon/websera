@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#wrap{
+    width: 85%;
+    margin: 0 auto;
+}
+
+#wrap h1{
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 100px;
+    font-size: 50px;
+}
+
+button {
+    width: 250px;
+    height: 100px;
+    background-color: grey;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 55%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+}
+button:focus {
+    outline: 0;
+}
+
+button:hover {
+    background-color: rgba(128, 128, 128, 0.9);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+img {
+    width: 450px;
+    height: 350px;
+    position: relative;
+    left: 10%;
+}
+
+.container {
+    text-align: left;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    font-size: 30px;
+}
+A:link {
+    text-decoration: none;
+    color: black;
+}
+
+A:visited {
+    text-decoration: none;
+    color: black;
+}
+
+A:hover {
+    text-decoration: none;
+    color: blue;
+}
+
+input {
+    width: 250px;
+    height: 50px;
+    background-color: rgb(43, 42, 42);
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 65%;
+    right: 15%;
+    transform: translate(0%, 0%);
+}
+
+input:focus {
+    outline: 0;
+}
+
+input:hover {
+    background-color: (43, 42, 42, 0.9);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style(book page).css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <title>스마트 주차장</title>
+    <style>
+        .item-img {
+            width: 500px;
+            height: 300px;
+
+            background-image: url("https://webassets.tomtom.com/m/51604780e48c50e/original/OG-Image-On-Street-and-Off-Street-Parking-products_1200x630.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .price {
+            font-size: 20px;
+        }
+
+        .item-desc {
+            width: 500px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-order {
+            width: 500px;
+            margin-bottom: 50px;
+        }
+
+        .btn-order {
+            margin: auto;
+            width: 100px;
+
+            display: block;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+
+        .rate {
+            color: blue;
+        }
+
+        .int-area {
+            position: absolute;
+            top: 100%;
+            right: 15%;
+        }
+
+        #qrcode {
+            position: absolute;
+            top: 103.5%;
+            right: 12.8%;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script>
+        var Request = function () {
+            this.getParameter = function (name) {
+                var rtnval = "";
+                var nowAddress = decodeURI(location.href);//unescape
+                var parameters = (nowAddress.slice(nowAddress.indexOf("?") + 1, nowAddress.length)).split("&");
+
+                for (var i = 0; i < parameters.length; i++) {
+                    var varName = parameters[i].split("=")[0];
+                    if (varName.toUpperCase() == name.toUpperCase()) {
+                        rtnval = parameters[i].split("=")[1];
+                        break;
+                    }
+                }
+                return rtnval;
+            }
+        }
+
+        $(document).ready(function () {
+            var request = new Request();
+            var sNo = request.getParameter('sNo');
+
+            $("#sNo").val(sNo);
+        })
+    </script>
+</head>
+
+<body>
+    <FORM NAME="FormObj"></FORM>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index(main page).php">Home</a>
+    </div>
+    <div class="wrap">
+        <div class="item-img"></div>
+        <div class="item-desc">
+            <h1>주차 예약<span class="price"> 가격:3,000원</span></h1>
+            <p>주차장 자리를 예약할 수 있어요!</p>
+        </div>
+        <div class="item-order">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">이름</span>
+                </div>
+                <input id="name" type="text" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">자리</label>
+                </div>
+                <input name="자리" id="sNo" type="text" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <center>
+                <p>예약 시간 <br>
+                    <label for="start1">시작 시간: </label>
+                    <input type="time" id="start1" value="00:00">
+                    <label for="start2">종료 시간: </label>
+                    <input type="time" id="start2" value="00:00">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">차량번호</span>
+                    </div>
+                    <input id="carnumber" type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">전화번호</span>
+                    </div>
+                    <input id="phone" type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+                <button type="button" onclick="order()" class="btn btn-primary btn-order">예약하기</button>
+        </div>
+    </div>
+
+    <div class="int-area">
+        <label for="text">QR코드 뜨는 곳 ↓</label>
+    </div>
+
+    <div>
+
+        <img id="qrcode" src='' />
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('button').click(function () {
+
+                // input에 입력하는 값들을 뽑아서 변수에 저장
+
+                var name = $('#name').val();
+                var sNo = $('#sNo').val();
+                var start1 = $('#start1').val();
+                var start2 = $('#start2').val();
+                var carnumber = $('#carnumber').val();
+                var phone = $('#phone').val();
+
+                // encodeURIComponent로 인코딩 합시당. 
+
+                name = encodeURIComponent(name);
+                sNo = encodeURIComponent(sNo);
+                start1 = encodeURIComponent(start1);
+                start2 = encodeURIComponent(start2);
+                carnumber = encodeURIComponent(carnumber);
+                phone = encodeURIComponent(phone);
+
+                // 뒤에 코드가 길어지니까 그냥 한번 변수에 주소를 저장
+
+                googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
+
+                // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
+
+                // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
+
+                $('#qrcode').attr('src', googleQRUrl + "이름:" + name + "/ 자리:" + sNo
+                    + "/ 시작 시간:" + start1 + "/ 종료 시간:" + start2 + "/ 차량번호:" + carnumber + "/ 전화번호:" + phone + '&choe=UTF-8');
+            });
+        });
+
+    </script>
+    </FORM>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+#qrcode {
+    position: absolute;
+    right: 10%;
+    bottom: -14.5%;
+}
+
+.int-area {
+    position: absolute;
+    right: 12.3%;
+    bottom: 12.5%;
+}
+
+#msg {
+    position: absolute;
+    top: 96%;
+    right: 36%;
+}
